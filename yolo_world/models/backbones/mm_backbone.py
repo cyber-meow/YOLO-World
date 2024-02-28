@@ -170,7 +170,9 @@ class PseudoLanguageBackbone(BaseModule):
         if self.training:
             return self.forward_text(text)
         else:
-            return self.forward_cache(text)
+            return self.forward_text(text)
+            # Avoid caching to have different text inputs
+            # return self.forward_cache(text)
 
     def forward_text(self, text: List[List[str]]) -> Tensor:
         num_per_batch = [len(t) for t in text]
